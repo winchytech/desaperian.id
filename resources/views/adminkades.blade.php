@@ -123,17 +123,30 @@
         <div class="row">
           <div class="col-md-12">
             <h1>Tabel data Penduduk Desa Perian</h1>
-             <select id="pilihankadus">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-12 col-sm-6 col-md-6">
+            <select id="pilihankadus">
                  <option selected="true" disabled="disabled">Dusun</option>
                  @foreach ($kode_area_dusuns as $kode_area_dusun)
                     <option value="{{ $kode_area_dusun->id_dusun }}">{{ $kode_area_dusun->Nama_Dusun }}</option>
                  @endforeach
             </select>
-            {{-- <select id="filter">
-              <option selected="true" disabled="disabled">urutkan berdasarkan ?</option>
-              <option value="hak_pilih">Hak Pilih</option>
-            </select> --}}
-            <div style="overflow: auto;max-height: 400px;position: relative;  ">
+          </div>
+
+          <div class="col-xs-12 col-12 col-sm-6 col-md-6 search-posisi">
+            <div class="search">
+            <input type="text"  id="search" name="search" placeholder="Masukan NIK atau Nama" ></input>
+            </div>
+            <button id="tombol_search">Search</button>  
+          </div>
+
+        </div>
+
+      <div class="row">
+          <div class="col-md-12">      
+      <div style="overflow: auto;max-height: 400px;position: relative;  ">
       <table id="tabeldatakadus">
       <thead>
         <col width="1000px">
@@ -214,6 +227,8 @@
       </tbody>
     </table>
           </div>
+          <a href="#" class="previous">&laquo; Previous</a>
+          <a href="#" class="next">Next &raquo;</a>
           <a href="{{url('formadddatapendudukkades')}}" class="tomboladd">Tambah Data</a>
         </div>
         </div>

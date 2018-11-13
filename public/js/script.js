@@ -21,7 +21,7 @@
 });
 
 
-
+var nomor=0;
 
 function loadTabelDataPenduduk(data) {
   $('#tbodytabel').remove();
@@ -69,7 +69,7 @@ function loadTabelDataPenduduk(data) {
         $('#trtabel'+j+'').append('<td><a href="formeditdatapendudukkades/'+this.NIK+'/'+this.Id_Dusun+'">edit</a></td>');        
         $('#trtabel'+j+'').append('<td><a href="deletedatapendudukkades/'+this.NIK+'/'+this.Id_Dusun+'">hapus</a></td>');        
 
-        $('#No'+j+'').append(j);
+        $('#No'+j+'').append(nomor);
         $('#Alamat'+j+'').append(this.Alamat);
         $('#RW'+j+'').append(this.RW);
         $('#RT'+j+'').append(this.RT);
@@ -105,14 +105,34 @@ function loadTabelDataPenduduk(data) {
         $('#Keterangan'+j+'').append(this.Keterangan);
 
         j++;
+        nomor++;
       });
 }
 
+var skipdata=0;
 
 $(document).ready(function(){
   $('#pilihankadus').change(function () {
-    $.get('reloadtabeldusun/'+$('#pilihankadus option:selected').val(),loadTabelDataPenduduk);
+    skipdata=0;
+    nomor=skipdata+1;
+    $.get('reloadtabeldatapendudukajax/'+$('#pilihankadus option:selected').val()+'/'+skipdata,loadTabelDataPenduduk);
   });
+});
+
+$(document).ready(function(){
+ $('.next').on('click', function() {
+    skipdata=skipdata+25;
+    nomor=skipdata+1;
+    $.get('reloadtabeldatapendudukajax/'+$('#pilihankadus option:selected').val()+'/'+skipdata,loadTabelDataPenduduk);
+ });
+});
+
+$(document).ready(function(){
+ $('.previous').on('click', function() {
+    skipdata=skipdata-25;
+    nomor=skipdata+1;
+    $.get('reloadtabeldatapendudukajax/'+$('#pilihankadus option:selected').val()+'/'+skipdata,loadTabelDataPenduduk);
+ });
 });
 
 
@@ -130,10 +150,10 @@ $(document).ready(function(){
   $('#nama_tombol').click(function () {
     console.log(pil);
     if(pil==1){
-        $.get('reloadtabeldusunurutnama/'+$('#pilihankadus option:selected').val()+'/'+pil,loadTabelDataPenduduk);
+        $.get('reloadtabeldatapendudukajaxurutnama/'+$('#pilihankadus option:selected').val()+'/'+pil,loadTabelDataPenduduk);
         pil=0;
     }else{
-        $.get('reloadtabeldusunurutnama/'+$('#pilihankadus option:selected').val()+'/'+pil,loadTabelDataPenduduk);
+        $.get('reloadtabeldatapendudukajaxurutnama/'+$('#pilihankadus option:selected').val()+'/'+pil,loadTabelDataPenduduk);
         pil=1;
     }
     
@@ -150,3 +170,27 @@ $(document).ready(function(){
     document.getElementById("edittombol").href="penduduk_keluar/"+document.getElementById("NIK").value; 
  });
 });
+
+$(document).ready(function(){
+ $('#tombol_search').on('click', function() {
+    console.log(document.getElementById("search").value);
+    nomor=1;
+    $.get('cari/'+document.getElementById("search").value,loadTabelDataPenduduk);
+ });
+});
+
+$(document).ready(function(){
+ $('#tombol_searchkadus').on('click', function() {
+    console.log(this.value);
+    nomor=1;
+    $.get('caridatakadus/'+document.getElementById("search").value+'/'+this.value,loadTabelDataPenduduk);
+ });
+});
+
+
+
+
+
+
+
+

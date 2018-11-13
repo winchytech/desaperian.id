@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
     <!-- Main-Stylesheets -->
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <script src="{{asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
@@ -34,7 +35,7 @@
 <body data-spy="scroll" data-target="#primary-menu">
 
 
-
+ 
     <!--Mainmenu-area-->
     <div class="mainmenu-area" data-spy="affix" data-offset-top="100">
         <div class="container">
@@ -64,7 +65,7 @@
 
 
 
-<section id="tentang-desa" class="section-padding">
+<section id="detail_berita" class="section-padding">
       <div class="container">
       <h1 class="text-center">{{$pengumumans->judulpengumuman}}</h1>
       <div class="row">

@@ -14,14 +14,37 @@
 Route::get('/', 'webcontroller@indexhome');
 Route::get('/updateumur', 'admincontroller@updateumur');
 
-Route::get('/reloadtabeldusun/{id}',function($id)
+Route::get('/reloadtabeldatapendudukajax/{id}/{skipdata}',function($id,$skipdata)
 {
 	if(Request::ajax()){
-		$data_penduduk_kadus_ajax=App\data_penduduk::where('id_dusun',$id)->take(10)->skip(0)->get();
+		$data_penduduk_kadus_ajax=App\data_penduduk::where('id_dusun',$id)->take(25)->skip($skipdata)->get();
 
         return $data_penduduk_kadus_ajax;
 	}
 });
+
+
+
+Route::get('/cari/{id}',function($id)
+{
+	if(Request::ajax()){
+	 $data_penduduk_kadus_ajax=App\data_penduduk::where('Nama','LIKE','%'.$id.'%')->orWhere('NIK','LIKE','%'.$id.'%')->get();
+
+        return $data_penduduk_kadus_ajax;
+	}
+});
+
+Route::get('/caridatakadus/{id}/{id_dusun}',function($id,$id_dusun)
+{
+	if(Request::ajax()){
+	 $data_penduduk_kadus_ajax=App\data_penduduk::where('Id_Dusun',$id_dusun)->where('Nama','LIKE','%'.$id.'%')->orWhere('NIK','LIKE','%'.$id.'%')->get();
+
+        return $data_penduduk_kadus_ajax;
+	}
+});
+
+
+
 
 Route::get('/reloadtabeldusunurutnama/{id}/{pil}',function($id,$pil)
 {
@@ -54,6 +77,7 @@ Route::get('/detailberitadesa/{id}', 'webcontroller@detailberitadesa');
 Route::get('/detailpengumuman/{id}', 'webcontroller@detailpengumuman');
 Route::get('/detailberita/{id}', 'webcontroller@detailberita');
 Route::get('/barangdesa', 'webcontroller@barangdesa');
+Route::post('/caribarangdesa', 'webcontroller@caribarangdesa');
 Route::get('/detailbarangdesa/{id}', 'webcontroller@detailbarangdesa');
 Route::get('/cekumur/{id}', function($id)
 {
@@ -93,7 +117,7 @@ Route::get('/formaddstatetnispend', 'admincontroller@formaddstatetnispend')->mid
 Route::get('/formaddstatagamapend', 'admincontroller@formaddstatagamapend')->middleware('auth');
 Route::get('/formadddatapendudukkadus', 'admincontroller@formadddatapendudukkadus')->middleware('auth');
 Route::get('/formadddatapendudukkades', 'admincontroller@formadddatapendudukkades')->middleware('auth');
-Route::get('/formaddbarangdesa', 'admincontroller@formaddbarangdesa')->middleware('auth');
+Route::get('/formaddbarangdesa/{id}', 'admincontroller@formaddbarangdesa')->middleware('auth');
 
 
 
@@ -202,14 +226,16 @@ Route::get('/admin', function(){
 		return view('adminkades',['beritas' => $beritas, 'pengumumandesas' => $pengumumandesas,'profildesas' => $profildesas,'users' => $users,'kode_area_dusuns' => $kode_area_dusuns]);
 	}elseif(Auth::user()->roles == "kadus" && Auth::user()->status == "aktif"){
 		$users= \App\User::find(Auth::user()->id);
-        $datapendudukkaduss= App\data_penduduk_kadus::where('id_kadus',Auth::user()->id)->get();
+        
         $kode_area_dusuns=App\kode_area_dusun::where('id_kadus',Auth::user()->id)->get();
         $data_penduduks=App\data_penduduk::where('id_dusun',$kode_area_dusuns[0]->id_dusun)->get();
-		return view('adminkadus',['users'=> $users ,'datapendudukkaduss' => $datapendudukkaduss,'data_penduduks' => $data_penduduks,'kode_area_dusuns' => $kode_area_dusuns]);
+		return view('adminkadus',['users'=> $users ,'data_penduduks' => $data_penduduks,'kode_area_dusuns' => $kode_area_dusuns]);
 	}elseif(Auth::user()->roles == "member" && Auth::user()->status == "aktif"){
 		$users= \App\User::find(Auth::user()->id);
 		$barangdesas= \App\barangdesa::where('id_pemilik',Auth::user()->id)->get();
-		return view('adminwarga',['users'=>$users,'barangdesas'=>$barangdesas]);
+		$jmlbarang=$barangdesas->count();
+		return view('adminwarga',['users'=>$users,'barangdesas'=>$barangdesas,'jmlbarang'=>$jmlbarang]);
+
 	}elseif(Auth::user()->roles == "member" && Auth::user()->status == "tidak aktif"){
 
 		return view('auth/login')->with('pesan', 'Akun anda belum aktif');

@@ -97,10 +97,19 @@
     <section id="tabeldatapendudukkadus"  class="section-padding">
       <div class="container-fluid">
         <div class="row">
+            <div class="col-xs-6 col-6 col-md-6">
+            <div class="search">
+                <input type="text"  id="search" name="search" placeholder="Masukan NIK atau Nama" ></input>
+            </div>
+            <button id="tombol_searchkadus" value="{{$kode_area_dusuns[0]->id_dusun}}">Search</button>  
+            </div>
+        </div>
+        <div class="row">
           <div class="col-md-12">
             <h1 style="margin-bottom: 35px;">Tabel Data Penduduk Dusun {{$kode_area_dusuns[0]->Nama_Dusun}}</h1>
+
            <div style="overflow: auto;max-height: 400px;position: relative;  ">
-      <table>
+      <table id="tabeldatakadus">
       <thead>
         <col width="1000px">
         <col width="1000px">
@@ -175,7 +184,7 @@
                   <th>edit</th>  
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbodytabel">
         @php
         $no=1
         @endphp

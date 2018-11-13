@@ -153,11 +153,16 @@ class admincontroller extends Controller
     } 
 
 
-    public function formaddbarangdesa()
+    public function formaddbarangdesa($id)
     {
         if(Auth::user()->roles == "member"){
         
-        return view('adminCRUD/addbarangdesa');
+        if($id<10){
+            return view('adminCRUD/addbarangdesa');
+        }else{
+            return redirect()->back()->with('batas', 'Maaf Anda sudah mencapai batas maksimal barang yang bisa di jual');
+        }
+        
     }else{
         
         return redirect('admin');

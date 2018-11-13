@@ -118,7 +118,7 @@
           <div class="row">
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
                     <div class="page-title">
-                        <h2>Produk Desa</h2>
+                        <h2>Pasar Online Desa</h2>
                     </div>
                 </div>
             </div>

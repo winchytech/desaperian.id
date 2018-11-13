@@ -67,7 +67,7 @@
 
     <section id="transparansi" class="section-padding">
       <div class="container">
-      <h1 class="text-center" style="text-transform: uppercase;">{{$id}} Desa Perian Tahun Anggaran {{ $apbds[0]->tahun }}</h1>
+      
       <div class="row" style="padding-top: 35px;">
         <div class="col-md-12">
 

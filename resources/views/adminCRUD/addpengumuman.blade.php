@@ -3,9 +3,9 @@
 @section('content')
 <form action="{{url('addpengumuman')}}" method="post" enctype="multipart/form-data" style="padding-top: 100px;">
           {{ csrf_field() }}
-          Judul Berita:<br>
+          Judul Pengumuman:<br>
           <input type="text" name="judul_pengumuman" value="judul_pengumuman"><br><br>
-          Isi Berita:<br>
+          Isi Pengumuman:<br>
           <textarea name="isi_pengumuman" value="isi_pengumuman"></textarea><br><br>
           Gambar : <br><br>
           <input type="file" name="url_gambar" id="url_gambar">

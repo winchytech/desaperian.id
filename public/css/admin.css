@@ -133,3 +133,38 @@
         padding: 5px 5px;
     }
 
+    
+ 
+
+    .previous,.next {
+       background-color: #f1f1f1;
+       color: black;
+       padding: 5px 5px;
+     }
+
+    .next:hover,.previous:hover {
+       background-color: #138FC2;
+       color: white;
+    }
+
+    .search{
+        margin: 5px 0px;
+        border: 1px solid #138FC2;
+        height: 23px;
+        padding: 2px 0px;
+        width: 30%;
+        display: inline-block;
+    }
+
+    #tombol_search{
+        border-radius: 5px;
+        padding: 0px 17px;
+        margin: 5px 0px;
+        background-color: #138FC2;
+        color: #ffffff;
+        font-size: 13px;        
+    }
+
+    .search-posisi{
+        text-align: right;
+    }

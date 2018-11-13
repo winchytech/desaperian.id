@@ -323,6 +323,25 @@
     margin-left: 0vw;
     }
 
+     .search{
+        margin: 5px 0px;
+        border: 1px solid #138FC2;
+        height: 23px;
+        padding: 2px 0px;
+        width: 272px;
+        display: inline-block;
+        text-align: left;
+    }
+
+    #tombol_search{
+        border-radius: 5px;
+        padding: 0px 17px;
+        margin: 5px 0px;
+        background-color: #138FC2;
+        color: #ffffff;
+        font-size: 13px;        
+    }
+
 
 
 
@@ -470,6 +489,26 @@
 
     #visimisi img {
     margin-left: 1vw;
+    }
+
+     .search{
+        margin: 5px 0px;
+        
+        padding: 2px 0px;
+        width: 236px;
+        
+    }
+
+    #tombol_search{
+        
+        padding: 0px 17px;
+        margin: 5px 0px;
+        background-color: #138FC2;
+        
+    }
+
+    .search-posisi{
+        text-align: left;
     }
 
     

@@ -116,8 +116,16 @@ class webcontroller extends Controller
 
     public function barangdesa()
     {
-    	# code...
+        # code...
         $barangdesas = barangdesa::paginate(30);
+        return view('barangdesa',['barangdesas' => $barangdesas]);
+    }
+
+
+    public function caribarangdesa(Request $request)
+    {
+    	# code...
+        $barangdesas = barangdesa::where('nama','LIKE','%'.$request->search.'%')->get();
     	return view('barangdesa',['barangdesas' => $barangdesas]);
     }
 
@@ -159,4 +167,18 @@ class webcontroller extends Controller
     }
         
     }
+
+
+    public function reloadtabeldatapendudukajax(Request $request)
+    {
+        if($request->ajax()){
+        $data_penduduk_kadus_ajax=App\data_penduduk::where('id_dusun',$id)->take(25)->skip($skipdata)->get();
+
+        
+        //return Response::json($data_penduduk_kadus_ajax);
+        return Response("oke");
+    }
+
+    }
+
 }

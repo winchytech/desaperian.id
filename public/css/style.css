@@ -45,6 +45,10 @@ a {
     color: #333333;
 }
 
+textarea{
+    width: 100%;
+}
+
 input:focus,
 button:focus,
 a:focus,
@@ -1110,3 +1114,6 @@ preloader
 
 
 
+.card-title{
+    white-space: nowrap ;
+}

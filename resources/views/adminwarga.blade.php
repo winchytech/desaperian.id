@@ -129,9 +129,10 @@
                 </tbody>
               </table>
           </div>
-            <a href="{{url('formaddbarangdesa')}}" class="tomboladd">Tambah Data Baru</a>
+            <a href="{{url('formaddbarangdesa/'.$jmlbarang)}}" class="tomboladd">Tambah Data Baru</a>
                 </div>
               </div>
+              <p class="text-center text-danger">{{ session('batas') }}</p>
             </div>
     </section>
 

@@ -66,6 +66,15 @@
     <section id="barang-desa">
       <div class="container">
       <h1 class="text-center">Pasar Online Desa Perian</h1>
+      <div class="row">
+          <div class="col-xs-6 col-6 col-sm-6 col-md-6">
+              <form action="{{url('caribarangdesa')}}" method="post" accept-charset="utf-8">
+                  {{ csrf_field() }}
+                  <input type="text"  id="search" name="search" placeholder="Masukan Nama Barang" ></input>
+                  <input type="submit" value="Search" id="tombol_search_barang">
+              </form>
+          </div>
+      </div>
         <div class="row">
             @foreach($barangdesas as $barangdesa)
             <div class="col-xs-4 col-4 col-sm-2 col-md-2" id="kotakbarang">
@@ -164,6 +173,7 @@
     <script src="{{asset('js/wow.min.js')}}"></script>
     <!--Main-active-JS-->
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 </body>
 
 </html>
